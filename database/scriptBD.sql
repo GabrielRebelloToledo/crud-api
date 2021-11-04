@@ -10,7 +10,8 @@ CREATE TABLE usuarios(
 CREATE TABLE aluno(
 	id INTEGER PRIMARY KEY IDENTITY,
 	nome VARCHAR(255) NOT NULL,
-	curso VARCHAR(45) NOT NULL
+	curso VARCHAR(45) NOT NULL,
+	images VARCHAR(300) NOT NULL
 )
 
 INSERT INTO usuarios(usuario, senha, perfil)

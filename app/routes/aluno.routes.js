@@ -4,7 +4,8 @@ module.exports = app => {
 
     app.route('/api/aluno')
         .post(alunoController.create)
-        .get(alunoController.getAll)
+
+    .get(alunoController.getAll)
 
     app.route('/api/aluno/:id')
         .put(alunoController.update)

@@ -1,6 +1,6 @@
 const { poolPromise } = require('../../config/database');
 
-exports.getAll = async () => {
+exports.getAll = async() => {
 
     const pool = await poolPromise;
     const rs = await pool
@@ -11,17 +11,19 @@ exports.getAll = async () => {
     return rs.recordset;
 }
 
-exports.create = async (dados) => {
+exports.create = async(req, res) => {
     const pool = await poolPromise;
+    console.log('Estamos aqui ' + filePath);
+    const imagePath = 'http:localhost:3000/images/' + req.file.filename;
     const rs = await pool
         .request()
-        .query(`INSERT INTO aluno(nome, curso)
-                VALUES ('${dados.nome}', '${dados.curso}')`)
+        .query(`INSERT INTO aluno(nome, curso, imagens)
+                VALUES ('${dados.nome}', '${dados.curso}','${imagePath}')`)
 
     return rs.rowsAffected;
 }
 
-exports.findById = async (id) => {
+exports.findById = async(id) => {
     const pool = await poolPromise;
     const rs = await pool
         .request()
@@ -31,7 +33,7 @@ exports.findById = async (id) => {
     return rs.recordset;
 }
 
-exports.delete = async (id) => {
+exports.delete = async(id) => {
     const pool = await poolPromise;
     const rs = await pool
         .request()
@@ -41,7 +43,7 @@ exports.delete = async (id) => {
     return rs.rowsAffected;
 }
 
-exports.update = async (id, dados) => {
+exports.update = async(id, dados) => {
     const pool = await poolPromise;
     const rs = await pool
         .request()
